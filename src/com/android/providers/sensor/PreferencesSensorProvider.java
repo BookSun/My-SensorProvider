@@ -1,9 +1,9 @@
-package lewa.provider;
+package android.provider;
 
 import android.content.Context;
 import android.content.ContentResolver;
 import android.provider.Settings;
-import lewa.provider.ExtraSettings;
+import android.provider.ExtraSettings;
 
 public class PreferencesSensorProvider {
 

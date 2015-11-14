@@ -1,4 +1,4 @@
-package com.lewa.providers.sensor;
+package com.android.providers.sensor;
 
 import android.app.Service;
 import android.content.Context;
@@ -17,7 +17,7 @@ import android.os.Vibrator;
 import com.android.internal.telephony.ITelephony;
 import android.util.Log;
 
-public class LewaSmartAnswerService extends Service{
+public class SmartAnswerService extends Service{
 
     private TelephonyManager mTelephonyMgr;
     private SensorManager mSensorMgr;
@@ -30,7 +30,7 @@ public class LewaSmartAnswerService extends Service{
     private boolean mPreviousActive;
     private boolean mCalling = false;
     private boolean mAnswerState = false;
-    private final String TAG = "LewaSmartAnswerService";
+    private final String TAG = "SmartAnswerService";
     private boolean DEBUG = true;
     private float mLast_oy = 0.0f;
     private float mLast_oz = 0.0f;
@@ -111,7 +111,7 @@ public class LewaSmartAnswerService extends Service{
             mAnswerState = false;
         }
     }
-/*///LEWA BEGIN 
+/*///android BEGIN 
     //Add by SL
     private boolean phoneIsInUse() {
         boolean phoneInUse = false;
@@ -125,7 +125,7 @@ public class LewaSmartAnswerService extends Service{
         return phoneInUse;
     }
     //Add end
-///LEWA END*/
+///android END*/
     private final PhoneStateListener mPhoneStateListener = new PhoneStateListener() {
         @Override
         public void onCallStateChanged(int state, String incomingNumber) {

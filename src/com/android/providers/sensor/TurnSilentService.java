@@ -3,7 +3,7 @@
  * function: turn phone switch silent when calling
  * 
  * */
-package com.lewa.providers.sensor;
+package com.android.providers.sensor;
 
 import android.app.Service;
 import android.content.Context;
@@ -20,25 +20,25 @@ import android.media.Ringtone;
 import android.util.Log;
 import android.net.Uri;
 import android.media.RingtoneManager;
-import lewa.util.LewaAudioManagerHelper;
-import lewa.provider.SensorProviderListener;
-import lewa.provider.SensorProviderListener.OnTurnPhoneDownListener;
+import android.util.androidAudioManagerHelper;
+import android.provider.SensorProviderListener;
+import android.provider.SensorProviderListener.OnTurnPhoneDownListener;
 
-public class LewaTurnSilentService extends Service{
+public class TurnSilentService extends Service{
 
     private TelephonyManager mTelephonyMgr;
     private SensorManager mSensorMgr;
     private AudioManager mAudioMgr;
     private Sensor mSensor;
     private int mRingerMode;
-    private LewaAudioManagerHelper mAudioManagerHelper = null;
+    private androidAudioManagerHelper mAudioManagerHelper = null;
     private SensorProviderListener mSensorProviderSer = null;
     private boolean mVibRinging;
 
     private boolean mSensorFlag = false;
     private boolean mUpwardFlag = false;
 
-    private final String TAG = "LewaTurnSilentService";
+    private final String TAG = "TurnSilentService";
     private boolean DEBUG = true;
     private int mRingerCurrent;
 
@@ -52,7 +52,7 @@ public class LewaTurnSilentService extends Service{
         mSensorMgr = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
         mSensor = mSensorMgr.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         if (mAudioManagerHelper == null) {
-            mAudioManagerHelper = new LewaAudioManagerHelper(this);
+            mAudioManagerHelper = new androidAudioManagerHelper(this);
         }
     }
 
@@ -79,7 +79,7 @@ public class LewaTurnSilentService extends Service{
 
 
     public void TurnSilentRing() {
-        mSensorProviderSer = new SensorProviderListener(LewaTurnSilentService.this);
+        mSensorProviderSer = new SensorProviderListener(TurnSilentService.this);
         mSensorProviderSer.registerSensorEventerListener(2);
         mSensorProviderSer.setOnTurnPhoneDownListener(new OnTurnPhoneDownListener() {
             @Override

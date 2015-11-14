@@ -3,7 +3,7 @@
  * function: The ring is max and vibrator,if phone in the packet when calling
  * 
  */
-package com.lewa.providers.sensor;
+package com.android.providers.sensor;
 
 import android.app.Service;
 import android.content.Context;
@@ -17,15 +17,15 @@ import android.os.IBinder;
 import android.os.Vibrator;
 import android.os.Bundle;
 import android.os.Handler;
-import lewa.util.PlatformHelper;
+import android.util.PlatformHelper;
 import android.os.SystemProperties;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
-import lewa.provider.SensorProviderListener;
-import lewa.provider.SensorProviderListener.OnOnlyProximityListener;
+import android.provider.SensorProviderListener;
+import android.provider.SensorProviderListener.OnOnlyProximityListener;
 
-public class LewaPacketRingService extends Service {
+public class PacketRingService extends Service {
     private TelephonyManager mTelephonyMgr;
     private AudioManager mAudioManager;
     private SensorManager mSensorManager;
@@ -33,7 +33,7 @@ public class LewaPacketRingService extends Service {
     private int mRingerMode;
     private int mVibRinging;
     private boolean mProximiryActive;
-    private final String TAG = "LewaPacketRingService";
+    private final String TAG = "PacketRingService";
     private boolean DEBUG = true;
     private boolean mSensorFlag = false;
     private boolean mRegisterSensor;
@@ -55,7 +55,7 @@ public class LewaPacketRingService extends Service {
         mSensorManager = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
         mProximitySensor = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
         mMaxVolume = mAudioManager.getStreamMaxVolume(AudioManager.STREAM_RING);
-        mSensorProviderListener = new SensorProviderListener(LewaPacketRingService.this);
+        mSensorProviderListener = new SensorProviderListener(PacketRingService.this);
         mHandler = new Handler();
     }
 

@@ -3,7 +3,7 @@
  * function: Turn off speaker,if phone's speaker is on when calling
  * 
  */
-package com.lewa.providers.sensor;
+package com.android.providers.sensor;
 
 import android.app.Service;
 import android.content.Context;
@@ -15,16 +15,16 @@ import android.os.PowerManager;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
-import lewa.provider.SensorProviderListener;
-import lewa.provider.SensorProviderListener.OnProximityListener;
+import android.provider.SensorProviderListener;
+import android.provider.SensorProviderListener.OnProximityListener;
 import android.content.BroadcastReceiver;
 import android.content.IntentFilter;
 
-public class LewaSmartSpeakService extends Service {
+public class SmartSpeakService extends Service {
     private TelephonyManager mTelephonyMgr;
     private AudioManager mAudioManager = null;
     private Sensor mProximitySensor;
-    private final String TAG = "LewaSmartSpeakService";
+    private final String TAG = "SmartSpeakService";
     private boolean DEBUG = false;
     private boolean mSensorFlag = false;
     private SensorProviderListener mSensorProvider = null;
@@ -86,8 +86,8 @@ public class LewaSmartSpeakService extends Service {
             public void onProximity() {
                 if (mAudioManager.isSpeakerphoneOn()) {
                     Intent intent = new Intent();
-                    intent.setAction("com.lewa.providers.smartspeak");
-                    LewaSmartSpeakService.this.sendBroadcast(intent);
+                    intent.setAction("com.android.providers.smartspeak");
+                    SmartSpeakService.this.sendBroadcast(intent);
                     mAudioManager.setSpeakerphoneOn(!mAudioManager.isSpeakerphoneOn());
                     Log.d(TAG,"isSpeakerphoneOn is true");
                 }
@@ -133,9 +133,9 @@ public class LewaSmartSpeakService extends Service {
                         Log.d(TAG,"Have a calling...isWiredHeadsetOn:"+mAudioManager.isWiredHeadsetOn());
                         } else {
                             Log.d(TAG,"CALL_STATE_OFFHOOK is true");
-                            //mWakeLock = mPowerManager.newWakeLock(PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK, "LewaSmartSpeakService.WakeLock");
+                            //mWakeLock = mPowerManager.newWakeLock(PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK, "SmartSpeakService.WakeLock");
                             mSensorFlag = true;
-                            mSensorProvider = new SensorProviderListener(LewaSmartSpeakService.this);
+                            mSensorProvider = new SensorProviderListener(SmartSpeakService.this);
                             //acquireWakeLock();
                             setPhoneSpeaker();
                         }

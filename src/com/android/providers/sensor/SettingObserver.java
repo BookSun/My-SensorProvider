@@ -1,16 +1,16 @@
-package com.lewa.providers.sensor;
+package com.android.providers.sensor;
 
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.ContentObserver;
 import android.os.Handler;
 import android.content.Intent;
-import lewa.provider.ExtraSettings;
+import android.provider.ExtraSettings;
 import android.provider.Settings;
 
 import android.util.Log;
 
-public class LewaSettingObserver extends ContentObserver {
+public class SettingObserver extends ContentObserver {
 
     private Context mContext;
 
@@ -21,12 +21,12 @@ public class LewaSettingObserver extends ContentObserver {
     private int mSmartSpeakValue = 0;
 
     private boolean DEBUG = true;
-    private final String TAG = "LewaSettingObserver";
+    private final String TAG = "androidSettingObserver";
 
-    LewaSettingObserver(Context context, Handler handler) {
+    SettingObserver(Context context, Handler handler) {
         super(handler);
         mContext = context;
-        if(DEBUG)Log.i(TAG, "LewaSettingObserver");
+        if(DEBUG)Log.i(TAG, "androidSettingObserver");
     }
 
     void observe() {
@@ -58,9 +58,9 @@ public class LewaSettingObserver extends ContentObserver {
                 ExtraSettings.System.TURN_SILENT_WHEN_CALLING, 0);
         if (mTurnSilentValue != turnSilent) {
             if (turnSilent == 1) {
-                mContext.startService(new Intent(mContext, LewaTurnSilentService.class));
+                mContext.startService(new Intent(mContext, TurnSilentService.class));
             }else if (turnSilent == 0) {
-                mContext.stopService(new Intent(mContext, LewaTurnSilentService.class));
+                mContext.stopService(new Intent(mContext, TurnSilentService.class));
             }
             mTurnSilentValue = turnSilent;
         }
@@ -69,9 +69,9 @@ public class LewaSettingObserver extends ContentObserver {
                 ExtraSettings.System.SMART_ANSWER, 0);
         if (mSmartAnswerValue != smartAnswer) {
             if (smartAnswer == 1) {
-                mContext.startService(new Intent(mContext, LewaSmartAnswerService.class));
+                mContext.startService(new Intent(mContext, SmartAnswerService.class));
             }else if (smartAnswer == 0) {
-                mContext.stopService(new Intent(mContext, LewaSmartAnswerService.class));
+                mContext.stopService(new Intent(mContext, SmartAnswerService.class));
             }
             mSmartAnswerValue = smartAnswer;
         }
@@ -79,9 +79,9 @@ public class LewaSettingObserver extends ContentObserver {
                 ExtraSettings.System.PACKET_RING, 0);
         if (mPacketRingValue != packetRing) {
             if (packetRing == 1) {
-                mContext.startService(new Intent(mContext, LewaPacketRingService.class));
+                mContext.startService(new Intent(mContext, PacketRingService.class));
             }else if (packetRing == 0) {
-                mContext.stopService(new Intent(mContext, LewaPacketRingService.class));
+                mContext.stopService(new Intent(mContext, PacketRingService.class));
             }
             mPacketRingValue = packetRing;
         }
@@ -90,9 +90,9 @@ public class LewaSettingObserver extends ContentObserver {
             ExtraSettings.System.DESK_RING, 0);
         if (mDeskRingValue != deskRing) {
             if (deskRing == 1) {
-                mContext.startService(new Intent(mContext, LewaDeskRingService.class));
+                mContext.startService(new Intent(mContext, DeskRingService.class));
             }else if (deskRing == 0) {
-                mContext.stopService(new Intent(mContext, LewaDeskRingService.class));
+                mContext.stopService(new Intent(mContext, DeskRingService.class));
             }
             mDeskRingValue = deskRing;
         }
@@ -101,9 +101,9 @@ public class LewaSettingObserver extends ContentObserver {
             ExtraSettings.System.SMART_SPEAK, 0);
         if (mSmartSpeakValue != smartSpeak) {
             if (smartSpeak == 1) {
-                mContext.startService(new Intent(mContext, LewaSmartSpeakService.class));
+                mContext.startService(new Intent(mContext, SmartSpeakService.class));
             }else if (smartSpeak == 0) {
-                mContext.stopService(new Intent(mContext, LewaSmartSpeakService.class));
+                mContext.stopService(new Intent(mContext, SmartSpeakService.class));
             }
             mSmartSpeakValue = smartSpeak;
         }

@@ -3,7 +3,7 @@
  * function: The ring from 0 to max,if phone in the desk when calling
  * 
  */
-package com.lewa.providers.sensor;
+package com.android.providers.sensor;
 
 import android.app.Service;
 import android.content.Context;
@@ -22,11 +22,11 @@ import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.provider.Settings;
-import lewa.provider.ExtraSettings;
-import lewa.provider.SensorProviderListener;
-import lewa.provider.SensorProviderListener.OnAdjustVolumeListener;
+import android.provider.ExtraSettings;
+import android.provider.SensorProviderListener;
+import android.provider.SensorProviderListener.OnAdjustVolumeListener;
 
-public class LewaDeskRingService extends Service {
+public class DeskRingService extends Service {
     private TelephonyManager mTelephonyMgr;
     private AudioManager mAudioManager;
     private SensorManager mSensorManager;
@@ -46,7 +46,7 @@ public class LewaDeskRingService extends Service {
     private int mMaxVolume;
     private int mCount = 0;
     private final int REGISTER_DESK = 8;
-    private final String TAG = "LewaDeskRingService";
+    private final String TAG = "DeskRingService";
     private SensorProviderListener mSensorProviderListener = null;
 
     @Override
@@ -59,7 +59,7 @@ public class LewaDeskRingService extends Service {
         mSensorManager = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
         mProximitySensor = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
         mMaxVolume = mAudioManager.getStreamMaxVolume(AudioManager.STREAM_RING);
-        mSensorProviderListener = new SensorProviderListener(LewaDeskRingService.this);
+        mSensorProviderListener = new SensorProviderListener(DeskRingService.this);
         mHandler = new Handler();
     }
 

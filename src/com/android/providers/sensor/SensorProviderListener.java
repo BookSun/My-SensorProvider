@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014 The LeWa Project
+ * Copyright (C) 2014 The android Project
  *
  * Base class for Sensor interfaces.When defining a new interface,
  * you must device the interfaces.
@@ -9,8 +9,8 @@
  * See also {@link android.hardware.SensorEventListener SensorEventListener}
  * 
  * Usage:Shake and Shake Sample Code
- * import lewa.provider.SensorProviderListener;
- * import lewa.provider.SensorProviderListener.OnShakeAndShakeListener;
+ * import android.provider.SensorProviderListener;
+ * import android.provider.SensorProviderListener.OnShakeAndShakeListener;
  * private SensorProviderService mSensorProviderService;
  * @onCreate{mSensorProviderService = new SensorProviderService(this);}
  * @need{mSensorProviderService.registerSensorEventerListener(int type);}
@@ -32,9 +32,9 @@
  *          }
  *      });
  * @onPause or onDestory{mSensorProviderService.unregisterSensorEventListener(int type);}
- * Add by wsliu@lewatek.com 2014-01-15
+ * Add by wsliu@androidtek.com 2014-01-15
  */
-package lewa.provider;
+package android.provider;
 
 import android.content.Context;
 import android.hardware.Sensor;
